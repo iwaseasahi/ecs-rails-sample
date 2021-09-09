@@ -24,5 +24,9 @@ RUN bundle exec rails webpacker:compile
 
 COPY . /usr/src/app/
 
+# 以下の記述があることで nginx から見ることができる
+VOLUME /usr/src/app/public
+VOLUME /usr/src/app/tmp
+
 # rails server
 CMD bash -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
