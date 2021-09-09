@@ -24,9 +24,11 @@ RUN bundle exec rails webpacker:compile
 
 COPY . /usr/src/app/
 
-# 以下の記述があることで nginx から見ることができる
-VOLUME /usr/src/app/public
-VOLUME /usr/src/app/tmp
+# volume を作成することで nginx から読み取るができる
+# https://docs.docker.jp/engine/reference/builder.html#volume
+# volume については以下の解説がわかりやすい
+# https://karuta-kayituka.hatenablog.com/entry/2019/05/04/114056
+VOLUME /usr/src/app/public /usr/src/app/tmp
 
 # rails server
 CMD bash -c "rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
