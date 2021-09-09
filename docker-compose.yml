@@ -13,6 +13,8 @@ services:
     stdin_open: true
   nginx:
     build:
+      # 起点をルートディレクトリにする
+      # https://qiita.com/sam8helloworld/items/e7fffa9afc82aea68a7a
       context: .
       dockerfile: ./docker/nginx/Dockerfile
     volumes:
